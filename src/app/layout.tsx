@@ -10,7 +10,7 @@ const poppins = Poppins({
 });
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <html lang="en">
+  <html lang="en" className="antialiased">
     <body className={cn('bg-light-grey', poppins.className)}>{children}</body>
   </html>
 );

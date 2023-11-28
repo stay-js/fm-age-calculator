@@ -143,8 +143,8 @@ export const AgeCalculator = () => {
             className="bg-purple focus:bg-off-black hover:bg-off-black grid aspect-square place-content-center rounded-full p-4 transition-colors"
             type="submit"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 lg:w-12" viewBox="0 0 46 44">
-              <g fill="none" stroke="#FFF" stroke-width="2">
+            <svg className="w-8 lg:w-12" viewBox="0 0 46 44">
+              <g className="fill-none stroke-white stroke-2">
                 <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" />
               </g>
             </svg>
@@ -152,15 +152,15 @@ export const AgeCalculator = () => {
         </div>
       </form>
 
-      <ul className="text-off-black flex flex-col gap-4 text-5xl font-extrabold italic lg:text-8xl">
+      <ul className="text-off-black [&_span]:text-purple flex flex-col gap-4 text-5xl font-extrabold italic lg:text-8xl">
         <li>
-          <span className="text-purple">{years ?? '--'}</span> years
+          <span>{years ?? '--'}</span> years
         </li>
         <li>
-          <span className="text-purple">{months ?? '--'}</span> months
+          <span>{months ?? '--'}</span> months
         </li>
         <li>
-          <span className="text-purple">{days ?? '--'}</span> days
+          <span>{days ?? '--'}</span> days
         </li>
       </ul>
     </div>
