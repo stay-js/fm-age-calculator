@@ -55,13 +55,9 @@ export const formSchema = z
     },
     { message: 'Must be a valid date' },
   )
-  .refine(
-    ({ day, month, year }) => {
-      const birthDate = new Date(`${year}-${month}-${day}`);
-      return birthDate < new Date();
-    },
-    { message: 'Must be in the past' },
-  );
+  .refine(({ day, month, year }) => new Date(`${year}-${month}-${day}`) < new Date(), {
+    message: 'Must be in the past',
+  });
 
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -78,7 +74,7 @@ export const AgeCalculator = () => {
 
   // temp solution for root error, since it's always undefined
   errors.root =
-    !errors.day && !errors.month && !errors.year ? errors['' as keyof FormSchema] : undefined;
+    !errors.day && !errors.month && !errors.year ? errors['' as keyof typeof errors] : undefined;
 
   const onSubmit: SubmitHandler<FormSchema> = ({ day, month, year }) => {
     const now = new Date();
@@ -106,7 +102,7 @@ export const AgeCalculator = () => {
   };
 
   return (
-    <div className="bg-off-white flex max-w-5xl flex-col gap-12 rounded-3xl rounded-br-[10rem] p-6 py-16 lg:px-12">
+    <div className="flex max-w-5xl flex-col gap-12 rounded-3xl rounded-br-[10rem] bg-off-white p-6 py-16 lg:px-12">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
         <div className="grid grid-cols-3 gap-x-4 gap-y-1 lg:w-10/12 lg:gap-x-8">
           <Input
@@ -133,14 +129,14 @@ export const AgeCalculator = () => {
             {...register('year')}
           />
 
-          {errors.root && <span className="text-light-red italic">{errors.root.message}</span>}
+          {errors.root && <span className="italic text-light-red">{errors.root.message}</span>}
         </div>
 
         <div className="relative isolate flex justify-center lg:justify-end">
-          <div className="bg-light-grey absolute top-1/2 -z-10 h-0.5 w-full" />
+          <div className="absolute top-1/2 -z-10 h-0.5 w-full bg-light-grey" />
 
           <button
-            className="bg-purple focus:bg-off-black hover:bg-off-black grid aspect-square place-content-center rounded-full p-4 transition-colors"
+            className="grid aspect-square place-content-center rounded-full bg-purple p-4 transition-colors hover:bg-off-black focus:bg-off-black"
             type="submit"
           >
             <svg className="w-8 lg:w-12" viewBox="0 0 46 44">
@@ -152,7 +148,7 @@ export const AgeCalculator = () => {
         </div>
       </form>
 
-      <ul className="text-off-black [&_span]:text-purple flex flex-col gap-4 text-5xl font-extrabold italic lg:text-8xl">
+      <ul className="flex flex-col gap-4 text-5xl font-extrabold italic text-off-black lg:text-8xl [&_span]:text-purple">
         <li>
           <span>{years ?? '--'}</span> years
         </li>

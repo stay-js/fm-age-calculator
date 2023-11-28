@@ -17,7 +17,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
         <label
           htmlFor={id}
           className={cn(
-            'text-smokey-grey text-sm font-bold uppercase tracking-widest',
+            'text-sm font-bold uppercase tracking-widest text-smokey-grey',
             (error || isRootError) && 'text-light-red',
           )}
         >
@@ -26,7 +26,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 
         <input
           className={cn(
-            'border-light-grey focus:outline-purple rounded-lg border bg-transparent p-3 text-base font-bold lg:p-4 lg:text-[32px]',
+            'rounded-lg border border-light-grey bg-transparent p-3 text-base font-bold focus:outline-purple lg:p-4 lg:text-[32px]',
             (error || isRootError) && 'border-light-red',
           )}
           type="text"
@@ -36,7 +36,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
           {...props}
         />
 
-        {error && <span className="text-light-red italic">{error}</span>}
+        {error && <span className="italic text-light-red">{error}</span>}
       </div>
     );
   },
