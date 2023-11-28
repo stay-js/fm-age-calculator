@@ -65,12 +65,6 @@ export const formSchema = z
 
 type FormSchema = z.infer<typeof formSchema>;
 
-const defaultValues: FormSchema = {
-  day: '',
-  month: '',
-  year: '',
-};
-
 export const AgeCalculator = () => {
   const [years, setYears] = useState<number | null>(null);
   const [months, setMonths] = useState<number | null>(null);
@@ -80,7 +74,7 @@ export const AgeCalculator = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormSchema>({ resolver: zodResolver(formSchema), defaultValues });
+  } = useForm<FormSchema>({ resolver: zodResolver(formSchema) });
 
   // temp solution for root error, since it's always undefined
   errors.root =
