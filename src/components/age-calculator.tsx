@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { cn } from '~/utils/cn';
+import { Input } from './input';
 
 export const formSchema = z
   .object({
@@ -84,129 +84,94 @@ export const AgeCalculator = () => {
     formState: { errors },
   } = useForm<FormSchema>({ resolver: zodResolver(formSchema), defaultValues });
 
+  // temp solution for root error, since it's always undefined
+  errors.root =
+    !errors.day && !errors.month && !errors.year ? errors['' as keyof FormSchema] : undefined;
+
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     const { day, month, year } = data;
 
     const now = new Date();
     const birthDate = new Date(`${year}-${month}-${day}`);
 
-    setYears(now.getFullYear() - birthDate.getFullYear());
-    setMonths(now.getMonth() - birthDate.getMonth());
-    setDays(now.getDate() - birthDate.getDate());
+    let years = now.getFullYear() - birthDate.getFullYear();
+    let months = now.getMonth() - birthDate.getMonth();
+    let days = now.getDate() - birthDate.getDate();
+
+    if (days < 0) {
+      const lastMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      days += lastMonthDays;
+      months--;
+    }
+
+    if (months < 0) {
+      months += 12;
+      years--;
+    }
+
+    setYears(years);
+    setMonths(months);
+    setDays(days);
   };
 
-  console.log(errors);
-
   return (
-    <div className="bg-off-white flex flex-col gap-12 rounded-3xl rounded-br-[25%] p-6 py-16">
+    <div className="bg-off-white flex max-w-5xl flex-col gap-12 rounded-3xl rounded-br-[10rem] p-6 py-16 lg:px-12">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
-        <div className="grid grid-cols-3 gap-4">
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor="day"
-              className={cn(
-                'text-smokey-grey text-sm font-bold uppercase tracking-widest',
-                (errors.day || errors.root) && 'text-light-red',
-              )}
-            >
-              Day
-            </label>
+        <div className="grid grid-cols-3 gap-4 lg:w-10/12 lg:gap-8">
+          <Input
+            label="Day"
+            placeholder="DD"
+            error={errors.day?.message}
+            isRootError={!!errors.root}
+            {...register('day')}
+          />
 
-            <input
-              className={cn(
-                'border-light-grey rounded-lg border bg-transparent p-4 text-xl font-bold',
-                (errors.day || errors.root) && 'border-light-red',
-              )}
-              type="number"
-              id="day"
-              placeholder="DD"
-              {...register('day')}
-            />
+          <Input
+            label="Month"
+            placeholder="MM"
+            error={errors.month?.message}
+            isRootError={!!errors.root}
+            {...register('month')}
+          />
 
-            {errors.day && <span className="text-light-red text-xs">{errors.day.message}</span>}
-          </div>
+          <Input
+            label="Year"
+            placeholder="YYYY"
+            error={errors.year?.message}
+            isRootError={!!errors.root}
+            {...register('year')}
+          />
 
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor="month"
-              className={cn(
-                'text-smokey-grey text-sm font-bold uppercase tracking-widest',
-                (errors.month || errors.root) && 'text-light-red',
-              )}
-            >
-              Month
-            </label>
-
-            <input
-              className={cn(
-                'border-light-grey rounded-lg border bg-transparent p-4 text-xl font-bold',
-                (errors.month || errors.root) && 'border-light-red',
-              )}
-              type="number"
-              id="day"
-              placeholder="MM"
-              {...register('month')}
-            />
-
-            {errors.month && <span className="text-light-red text-xs">{errors.month.message}</span>}
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor="year"
-              className={cn(
-                'text-smokey-grey text-sm font-bold uppercase tracking-widest',
-                (errors.year || errors.root) && 'text-light-red',
-              )}
-            >
-              Year
-            </label>
-
-            <input
-              className={cn(
-                'border-light-grey rounded-lg border bg-transparent p-4 text-xl font-bold',
-                (errors.year || errors.root) && 'border-light-red',
-              )}
-              type="number"
-              id="year"
-              placeholder="YYYY"
-              {...register('year')}
-            />
-
-            {errors.year && <span className="text-light-red text-xs">{errors.year.message}</span>}
-          </div>
-
-          {!errors.day && !errors.month && !errors.year && errors && (
-            <span className="text-light-red text-xs">
-              {Object.values(errors)
-                .map(({ message }) => message)
-                .join(', ')}
-            </span>
-          )}
+          {errors.root && <span className="text-light-red text-xs">{errors.root.message}</span>}
         </div>
 
-        <div className="relative isolate flex justify-center">
+        <div className="relative isolate flex justify-center lg:justify-end">
           <div className="bg-light-grey absolute top-1/2 -z-10 h-0.5 w-full" />
+
           <button
-            className="bg-purple grid h-16 w-16 place-content-center rounded-full"
+            className="bg-purple focus:bg-off-black hover:bg-off-black grid aspect-square place-content-center rounded-full p-4 transition-colors"
             type="submit"
           >
-            <img src="/icon-arrow.svg" className="h-8 w-8" alt="Arrow" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 lg:w-12" viewBox="0 0 46 44">
+              <g fill="none" stroke="#FFF" stroke-width="2">
+                <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" />
+              </g>
+            </svg>
           </button>
         </div>
       </form>
 
-      <div className="flex flex-col gap-4 text-5xl font-extrabold italic">
-        <div>
+      <ul className="text-off-black flex flex-col gap-4 text-5xl font-extrabold italic lg:text-8xl">
+        <li>
           <span className="text-purple">{years ?? '--'}</span> years
-        </div>
-        <div>
+        </li>
+        <li>
           <span className="text-purple">{months ?? '--'}</span> months
-        </div>
-        <div>
+        </li>
+        <li>
           <span className="text-purple">{days ?? '--'}</span> days
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   );
 };

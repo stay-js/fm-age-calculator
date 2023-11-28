@@ -1,4 +1,6 @@
 import { Poppins } from 'next/font/google';
+import { cn } from '~/utils/cn';
+
 import '~/styles/globals.css';
 
 const poppins = Poppins({
@@ -9,7 +11,7 @@ const poppins = Poppins({
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <html lang="en">
-    <body className={poppins.className}>{children}</body>
+    <body className={cn('bg-light-grey', poppins.className)}>{children}</body>
   </html>
 );
 
