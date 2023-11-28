@@ -44,23 +44,17 @@ export const formSchema = z
     (data) => {
       const day = Number(data.day);
       const month = Number(data.month);
+
+      if ([4, 6, 9, 11].includes(month)) return day <= 30;
+      if ([1, 3, 5, 7, 8, 10, 12].includes(month)) return day <= 31;
+
       const year = Number(data.year);
 
-      if (month === 2) {
-        if (year % 4 === 0) {
-          return Number(day) <= 29;
-        }
-
-        return Number(day) <= 28;
+      if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+        return day <= 29;
       }
 
-      if ([4, 6, 9, 11].includes(month)) {
-        return Number(day) <= 30;
-      }
-
-      if ([1, 3, 5, 7, 8, 10, 12].includes(month)) {
-        return Number(day) <= 31;
-      }
+      return day <= 28;
     },
     { message: 'Must be a valid date' },
   );
@@ -88,9 +82,7 @@ export const AgeCalculator = () => {
   errors.root =
     !errors.day && !errors.month && !errors.year ? errors['' as keyof FormSchema] : undefined;
 
-  const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    const { day, month, year } = data;
-
+  const onSubmit: SubmitHandler<FormSchema> = ({ day, month, year }) => {
     const now = new Date();
     const birthDate = new Date(`${year}-${month}-${day}`);
 
@@ -100,6 +92,7 @@ export const AgeCalculator = () => {
 
     if (days < 0) {
       const lastMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+
       days += lastMonthDays;
       months--;
     }
