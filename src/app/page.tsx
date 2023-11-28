@@ -1,5 +1,5 @@
+import type { Metadata } from 'next';
 import { AgeCalculator } from '~/components/age-calculator';
-import { Metadata } from 'next';
 
 const title = 'Frontend Mentor | Age calculator app';
 const description =

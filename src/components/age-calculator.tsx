@@ -88,7 +88,7 @@ export const AgeCalculator = () => {
   errors.root =
     !errors.day && !errors.month && !errors.year ? errors['' as keyof FormSchema] : undefined;
 
-  const onSubmit: SubmitHandler<FormSchema> = async (data) => {
+  const onSubmit: SubmitHandler<FormSchema> = (data) => {
     const { day, month, year } = data;
 
     const now = new Date();
