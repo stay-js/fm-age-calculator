@@ -32,13 +32,10 @@ export const formSchema = z
     year: z
       .string()
       .min(1, { message: 'This field is required' })
-      .refine(
-        (value) => {
-          const year = Number(value);
-          return year > 0 && year <= new Date().getFullYear();
-        },
-        { message: 'Must be a valid year' },
-      ),
+      .refine((value) => Number(value) > 0, { message: 'Must be a valid year' })
+      .refine((value) => Number(value) <= new Date().getFullYear(), {
+        message: 'Must be in the past',
+      }),
   })
   .refine(
     (data) => {
@@ -57,6 +54,13 @@ export const formSchema = z
       return day <= 28;
     },
     { message: 'Must be a valid date' },
+  )
+  .refine(
+    ({ day, month, year }) => {
+      const birthDate = new Date(`${year}-${month}-${day}`);
+      return birthDate < new Date();
+    },
+    { message: 'Must be in the past' },
   );
 
 type FormSchema = z.infer<typeof formSchema>;
@@ -110,7 +114,7 @@ export const AgeCalculator = () => {
   return (
     <div className="bg-off-white flex max-w-5xl flex-col gap-12 rounded-3xl rounded-br-[10rem] p-6 py-16 lg:px-12">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
-        <div className="grid grid-cols-3 gap-4 lg:w-10/12 lg:gap-8">
+        <div className="grid grid-cols-3 gap-x-4 gap-y-1 lg:w-10/12 lg:gap-x-8">
           <Input
             label="Day"
             placeholder="DD"
@@ -135,7 +139,7 @@ export const AgeCalculator = () => {
             {...register('year')}
           />
 
-          {errors.root && <span className="text-light-red text-xs">{errors.root.message}</span>}
+          {errors.root && <span className="text-light-red italic">{errors.root.message}</span>}
         </div>
 
         <div className="relative isolate flex justify-center lg:justify-end">
