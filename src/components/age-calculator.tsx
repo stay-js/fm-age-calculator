@@ -151,13 +151,13 @@ export const AgeCalculator = () => {
 
       <ul className="flex flex-col gap-4 text-5xl font-extrabold italic text-off-black lg:text-8xl [&_span]:text-purple">
         <li>
-          <span>{years != null ? <CountUp end={years} duration={1000} /> : '--'}</span> years
+          <span>{years != null ? <CountUp end={years} /> : '--'}</span> years
         </li>
         <li>
-          <span>{months != null ? <CountUp end={months} duration={1000} /> : '--'}</span> months
+          <span>{months != null ? <CountUp end={months} /> : '--'}</span> months
         </li>
         <li>
-          <span>{days != null ? <CountUp end={days} duration={1000} /> : '--'}</span> days
+          <span>{days != null ? <CountUp end={days} /> : '--'}</span> days
         </li>
       </ul>
     </div>
