@@ -48,7 +48,7 @@ export const formSchema = z
 
       const year = Number(data.year);
 
-      if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+      if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
         return day <= 29;
       }
 
@@ -151,13 +151,13 @@ export const AgeCalculator = () => {
 
       <ul className="flex flex-col gap-4 text-5xl font-extrabold italic text-off-black lg:text-8xl [&_span]:text-purple">
         <li>
-          <span>{years != null ? <CountUp end={years} /> : '--'}</span> years
+          <span>{years !== null ? <CountUp end={years} /> : '--'}</span> years
         </li>
         <li>
-          <span>{months != null ? <CountUp end={months} /> : '--'}</span> months
+          <span>{months !== null ? <CountUp end={months} /> : '--'}</span> months
         </li>
         <li>
-          <span>{days != null ? <CountUp end={days} /> : '--'}</span> days
+          <span>{days !== null ? <CountUp end={days} /> : '--'}</span> days
         </li>
       </ul>
     </div>
