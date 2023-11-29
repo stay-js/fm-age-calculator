@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
 import { AgeCalculator } from '~/components/age-calculator';
 
 const title = 'Frontend Mentor | Age calculator app';
@@ -47,13 +47,6 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon-32x32.png',
   },
-};
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  themeColor: '#f0f0f0',
-  colorScheme: 'light',
 };
 
 const Page = () => (

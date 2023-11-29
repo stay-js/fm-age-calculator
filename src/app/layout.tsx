@@ -1,7 +1,15 @@
+import type { Viewport } from 'next';
 import { Poppins } from 'next/font/google';
 import { cn } from '~/utils/cn';
 
 import '~/styles/globals.css';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#f0f0f0',
+  colorScheme: 'light',
+};
 
 const poppins = Poppins({
   weight: ['400', '700', '800'],
