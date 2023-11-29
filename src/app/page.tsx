@@ -18,6 +18,8 @@ export const metadata: Metadata = {
 
   applicationName: title,
 
+  description,
+
   robots: {
     index: true,
     follow: true,

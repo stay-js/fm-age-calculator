@@ -137,8 +137,9 @@ export const AgeCalculator = () => {
           <div className="absolute top-1/2 -z-10 h-0.5 w-full bg-light-grey" />
 
           <button
-            className="grid aspect-square place-content-center rounded-full bg-purple p-4 transition-colors hover:bg-off-black focus:bg-off-black"
+            className="grid aspect-square w-16 place-content-center rounded-full bg-purple transition-colors hover:bg-off-black focus:bg-off-black lg:w-20"
             type="submit"
+            title="Submit"
           >
             <svg className="w-8 lg:w-12" viewBox="0 0 46 44">
               <g className="fill-none stroke-white stroke-2">
