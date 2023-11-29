@@ -32,6 +32,7 @@ Users should be able to:
 
 ![Desktop](./screenshots/desktop.png)
 ![Mobile](./screenshots/mobile.png)
+![Mobile empty](./screenshots/mobile-empty.png)
 
 ### Links
 

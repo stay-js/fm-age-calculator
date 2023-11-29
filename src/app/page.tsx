@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { AgeCalculator } from '~/components/age-calculator';
 
 const title = 'Frontend Mentor | Age calculator app';
@@ -13,8 +13,6 @@ export const metadata: Metadata = {
 
   keywords:
     'frontend mentor, frontend, mentor, fem, age calculator, age, calculator, challenge, next.js, nextjs, react, react-hook-form, zod, tailwind, tailwindcss',
-
-  themeColor: '#f0f0f0',
 
   title,
 
@@ -49,6 +47,13 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon-32x32.png',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#f0f0f0',
+  colorScheme: 'light',
 };
 
 const Page = () => (

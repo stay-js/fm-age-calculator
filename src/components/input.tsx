@@ -29,7 +29,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             'rounded-lg border border-light-grey bg-transparent p-3 text-base font-bold focus:outline-purple lg:p-4 lg:text-[32px]',
             (error || isRootError) && 'border-light-red',
           )}
-          type="text"
+          type="number"
           id={id}
           placeholder={placeholder}
           ref={ref}
