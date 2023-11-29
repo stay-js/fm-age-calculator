@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from './input';
+import { CountUp } from './count-up';
 
 export const formSchema = z
   .object({
@@ -150,13 +151,13 @@ export const AgeCalculator = () => {
 
       <ul className="flex flex-col gap-4 text-5xl font-extrabold italic text-off-black lg:text-8xl [&_span]:text-purple">
         <li>
-          <span>{years ?? '--'}</span> years
+          <span>{years != null ? <CountUp end={years} duration={1000} /> : '--'}</span> years
         </li>
         <li>
-          <span>{months ?? '--'}</span> months
+          <span>{months != null ? <CountUp end={months} duration={1000} /> : '--'}</span> months
         </li>
         <li>
-          <span>{days ?? '--'}</span> days
+          <span>{days != null ? <CountUp end={days} duration={1000} /> : '--'}</span> days
         </li>
       </ul>
     </div>
