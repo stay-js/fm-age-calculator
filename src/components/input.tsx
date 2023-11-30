@@ -26,7 +26,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 
         <input
           className={cn(
-            'rounded-lg border border-light-grey bg-transparent p-3 text-base font-bold focus:outline-purple lg:p-4 lg:text-[32px]',
+            'rounded-lg border border-light-grey bg-transparent p-3 text-base font-bold text-off-black placeholder:text-smokey-grey focus:outline-purple lg:p-4 lg:text-[32px]',
             (error || isRootError) && 'border-light-red',
           )}
           type="number"
