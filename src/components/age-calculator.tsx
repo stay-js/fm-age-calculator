@@ -103,7 +103,7 @@ export const AgeCalculator = () => {
   };
 
   return (
-    <div className="flex max-w-5xl flex-col gap-12 rounded-3xl rounded-br-[10rem] bg-off-white p-6 py-16 lg:px-12">
+    <div className="flex max-w-5xl flex-col gap-12 rounded-3xl rounded-br-[10rem] bg-white p-6 py-16 lg:px-12">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
         <div className="grid grid-cols-3 gap-x-4 gap-y-1 lg:w-10/12 lg:gap-x-8">
           <Input
@@ -134,7 +134,7 @@ export const AgeCalculator = () => {
         </div>
 
         <div className="relative isolate flex justify-center lg:justify-end">
-          <div className="absolute top-1/2 -z-10 h-0.5 w-full bg-light-grey" />
+          <div className="absolute top-1/2 -z-10 h-0.5 w-full bg-off-white" />
 
           <button
             className="grid aspect-square w-16 place-content-center rounded-full bg-purple transition-colors hover:bg-off-black focus:bg-off-black lg:w-20"

@@ -7,7 +7,7 @@ import '~/styles/globals.css';
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: 'hsl(0, 0%, 86%)',
+  themeColor: 'hsl(0, 0%, 94%)',
   colorScheme: 'light',
 };
 
@@ -19,7 +19,7 @@ const poppins = Poppins({
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <html lang="en" className="antialiased">
-    <body className={cn('bg-light-grey', poppins.className)}>{children}</body>
+    <body className={cn('bg-off-white', poppins.className)}>{children}</body>
   </html>
 );
 
