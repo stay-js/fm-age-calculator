@@ -30,9 +30,14 @@ Users should be able to:
 
 ### Screenshots
 
+![Desktop Empty](./screenshots/desktop-empty.png)
 ![Desktop](./screenshots/desktop.png)
 ![Mobile](./screenshots/mobile.png)
-![Mobile empty](./screenshots/mobile-empty.png)
+![Empty Error](./screenshots/empty-error.png)
+![One Empty](./screenshots/one-empty.png)
+![Errors](./screenshots/errors.png)
+![Future](./screenshots/future.png)
+![Invalid Day](./screenshots/invalid-day.png)
 
 ### Links
 
