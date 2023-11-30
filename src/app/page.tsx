@@ -53,6 +53,7 @@ export const metadata: Metadata = {
 
 const Page = () => (
   <main className="grid min-h-screen w-screen place-content-center p-6">
+    <h1 className="sr-only">Age calculator app</h1>
     <AgeCalculator />
   </main>
 );
