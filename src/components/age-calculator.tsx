@@ -103,9 +103,9 @@ export const AgeCalculator = () => {
   };
 
   return (
-    <div className="flex max-w-4xl flex-col gap-12 rounded-3xl rounded-br-[10rem] bg-white p-6 py-16 lg:px-12">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
-        <div className="grid grid-cols-3 gap-x-4 gap-y-1 lg:w-10/12 lg:gap-x-8">
+    <div className="flex max-w-4xl flex-col gap-10 rounded-3xl rounded-br-[10rem] bg-white p-6 py-16 lg:gap-0 lg:p-16">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10 lg:gap-0">
+        <div className="grid grid-cols-3 gap-x-4 gap-y-1 lg:w-9/12 lg:gap-x-8">
           <Input
             label="Day"
             placeholder="DD"
