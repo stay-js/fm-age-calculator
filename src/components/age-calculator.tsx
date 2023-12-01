@@ -1,9 +1,8 @@
 'use client';
 
-import type { SubmitHandler } from 'react-hook-form';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { z } from 'zod';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from './input';
 import { CountUp } from './count-up';
